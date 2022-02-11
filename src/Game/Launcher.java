@@ -1,3 +1,5 @@
+package Game;
+
 public class Launcher
 {
     public static Main main;

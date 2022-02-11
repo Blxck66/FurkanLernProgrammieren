@@ -1,4 +1,4 @@
-package game;
+package OutputInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,20 +6,27 @@ import java.awt.*;
 public class GameFrame
 {
     private String title;
+
     private int height;
+
     private int width;
+
     private JFrame frame;
+
     private Canvas canvas;
+
     public static String ke = "";
 
-    public GameFrame(String title, int width, int height) {
+    public GameFrame(String title, int width, int height)
+    {
         this.title = title;
         this.width = width;
         this.height = height;
         createFrame();
     }
 
-    public synchronized void createFrame() {
+    public synchronized void createFrame()
+    {
         frame = new JFrame();
         frame.setTitle(this.title);
         frame.setSize(width, height);
@@ -40,11 +47,27 @@ public class GameFrame
 
     }
 
-    public Canvas getCanvas() {
+    public Canvas getCanvas()
+    {
         return this.canvas;
     }
 
-    public JFrame getFrame() {
+    public JFrame getFrame()
+    {
         return this.frame;
     }
+
+    public void setTitle(String title)
+    {
+        this.title = title;
+        this.frame.setTitle(title);
+    }
+    public void setWidth(int width, int height){
+        //vlt. nachher autoaktualisierung
+        this.width = width;
+        this.height = height;
+        this.frame.setSize(this.width,this.height);
+    }
+
+    ;
 }

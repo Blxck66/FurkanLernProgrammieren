@@ -1,7 +1,10 @@
+package Game;
+
 import OutputInput.GameFrame;
 import OutputInput.KeyManager;
 import common.CommonValues;
 import gamestates.StateManager;
+import gamestates.States.StateMenu;
 import images.Assets;
 import snake.Snake;
 
@@ -12,8 +15,13 @@ public class Main
     implements Runnable
 {
     private GameFrame frame;
+    private StateManager stateManager;
 
-    StateManager stateManager;
+    private final int width;
+
+    private final int height;
+
+    private final String title;
 
     private boolean running = false;
 
@@ -41,11 +49,12 @@ public class Main
     {
         CommonValues.fieldsize = fieldSize;
 
-        CommonValues.width = width * CommonValues.fieldsize;
-        CommonValues.height = height * CommonValues.fieldsize;
-        CommonValues.title = title;
+        this.width = width * CommonValues.fieldsize;
+        this.height = height * CommonValues.fieldsize;
+        this.title = title;
 
         keyManager = new KeyManager();
+        stateManager = new StateManager();
     }
 
     /**
@@ -57,9 +66,8 @@ public class Main
      */
     private void init()
     {
-        frame = new GameFrame(CommonValues.title, CommonValues.width, CommonValues.height);
+        frame = new GameFrame(title, width, height);
         frame.getFrame().addKeyListener(keyManager);
-        stateManager = new StateManager();
 
         Assets.init();
         snake.init();
@@ -71,7 +79,6 @@ public class Main
     private void tick()
     {
         keyManager.tick();
-//        stateManager.tick();
     }
 
     /**
@@ -90,10 +97,10 @@ public class Main
         g = bs.getDrawGraphics();
 
         // Clear the screen
-        g.clearRect(0, 0, CommonValues.width, CommonValues.height);
+        g.clearRect(0, 0, width, height);
 
         // drawing______________________________________________________________
-        stateManager.render(g);
+
         // _____________________________________________________________________
 
         bs.show();
@@ -179,5 +186,9 @@ public class Main
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public GameFrame getFrame(){
+        return frame;
     }
 }
