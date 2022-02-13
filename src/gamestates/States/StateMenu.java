@@ -16,6 +16,7 @@ public class StateMenu
 
     public void init()
     {
+
         Launcher.main.getFrame().setTitle(title);
     }
 
